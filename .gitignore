@@ -1,0 +1,21 @@
+# Node
+node_modules/
+dist/
+.cache/
+.angular/
+*.log
+
+# Angular build
+biblioteca-frontend/node_modules/
+biblioteca-frontend/dist/
+biblioteca-frontend/.angular/
+
+# Python / Django
+backend/__pycache__/
+backend/*/migrations/__pycache__/
+backend/db.sqlite3
+env/
+venv/
+
+# VSCode
+.vscode/
