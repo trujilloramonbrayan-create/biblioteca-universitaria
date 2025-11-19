@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">
+        <i class="bi bi-book"></i> Biblioteca Digital
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <i class="bi bi-house"></i> Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/recursos" routerLinkActive="active">
+              <i class="bi bi-book"></i> Recursos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/prestamos" routerLinkActive="active">
+              <i class="bi bi-bookmark"></i> Préstamos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/reservas" routerLinkActive="active">
+              <i class="bi bi-calendar-check"></i> Reservas
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

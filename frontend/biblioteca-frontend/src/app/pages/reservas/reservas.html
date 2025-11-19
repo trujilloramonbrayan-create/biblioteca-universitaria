@@ -1,0 +1,294 @@
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div>
+            <h2 class="mb-1">
+              <i class="bi bi-calendar-check text-warning"></i> Gestión de Reservas
+            </h2>
+            <p class="text-muted mb-0">Administra las reservas de recursos bibliográficos</p>
+          </div>
+          <button class="btn btn-warning btn-lg">
+            <i class="bi bi-plus-circle me-2"></i> Nueva Reserva
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Stats Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <p class="text-muted mb-1 small">Pendientes</p>
+                <h3 class="mb-0 fw-bold">{{ reservasPendientes }}</h3>
+              </div>
+              <div class="bg-warning bg-opacity-10 rounded-circle p-3">
+                <i class="bi bi-clock-fill text-warning fs-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <p class="text-muted mb-1 small">Confirmadas</p>
+                <h3 class="mb-0 fw-bold">{{ reservasConfirmadas }}</h3>
+              </div>
+              <div class="bg-success bg-opacity-10 rounded-circle p-3">
+                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <p class="text-muted mb-1 small">Expiradas</p>
+                <h3 class="mb-0 fw-bold">{{ reservasExpiradas }}</h3>
+              </div>
+              <div class="bg-secondary bg-opacity-10 rounded-circle p-3">
+                <i class="bi bi-x-circle-fill text-secondary fs-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <p class="text-muted mb-1 small">Total</p>
+                <h3 class="mb-0 fw-bold">{{ reservas.length }}</h3>
+              </div>
+              <div class="bg-primary bg-opacity-10 rounded-circle p-3">
+                <i class="bi bi-calendar-event text-primary fs-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Filters -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="input-group">
+                  <span class="input-group-text bg-white">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Buscar por usuario, recurso...">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <select class="form-select" [(ngModel)]="filtroEstado">
+                  <option value="TODOS">Todos los estados</option>
+                  <option value="PENDIENTE">Pendientes</option>
+                  <option value="CONFIRMADA">Confirmadas</option>
+                  <option value="CANCELADA">Canceladas</option>
+                  <option value="EXPIRADA">Expiradas</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <input type="date" class="form-control" placeholder="Fecha desde">
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-outline-secondary w-100">
+                  <i class="bi bi-arrow-clockwise me-2"></i>Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center my-5">
+      <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-3 text-muted">Cargando reservas...</p>
+    </div>
+  
+    <!-- Error -->
+    <div *ngIf="error" class="alert alert-danger d-flex align-items-center" role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2 fs-4"></i>
+      <div><strong>Error:</strong> {{ error }}</div>
+    </div>
+  
+    <!-- Cards View -->
+    <div *ngIf="!loading && !error" class="row g-4">
+      <div class="col-lg-6" *ngFor="let reserva of reservasFiltradas">
+        <div class="card border-0 shadow-sm h-100 hover-card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="d-flex align-items-center">
+                <span class="badge me-2" [ngClass]="getEstadoClass(reserva.estado)">
+                  {{ reserva.estado }}
+                </span>
+                <i [class]="getPrioridadIcon(reserva.prioridad)"></i>
+              </div>
+              <small class="text-muted">#{{ reserva.id }}</small>
+            </div>
+  
+            <!-- Usuario -->
+            <div class="mb-3">
+              <div class="d-flex align-items-center">
+                <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                     style="width: 48px; height: 48px; font-size: 1.2rem;">
+                  {{ reserva.usuario.nombre.charAt(0) }}{{ reserva.usuario.apellido.charAt(0) }}
+                </div>
+                <div>
+                  <h6 class="mb-0 fw-semibold">{{ reserva.usuario.nombre }} {{ reserva.usuario.apellido }}</h6>
+                  <small class="text-muted">
+                    <i class="bi bi-envelope me-1"></i>{{ reserva.usuario.email }}
+                  </small>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Recurso -->
+            <div class="card bg-light border-0 mb-3">
+              <div class="card-body py-2">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-book text-primary fs-3 me-3"></i>
+                  <div>
+                    <h6 class="mb-1 fw-semibold">{{ reserva.recurso.titulo }}</h6>
+                    <small class="text-muted">{{ reserva.recurso.autor }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Fechas -->
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <div class="d-flex align-items-center text-muted small">
+                  <i class="bi bi-calendar-plus me-2"></i>
+                  <div>
+                    <div class="text-muted" style="font-size: 0.7rem;">Reservado</div>
+                    <strong class="text-dark">{{ reserva.fecha_reserva | date:'dd/MM/yyyy' }}</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center text-muted small">
+                  <i class="bi bi-calendar-x me-2"></i>
+                  <div>
+                    <div class="text-muted" style="font-size: 0.7rem;">Expira</div>
+                    <strong class="text-dark">{{ reserva.fecha_expiracion | date:'dd/MM/yyyy' }}</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Días restantes -->
+            <div *ngIf="reserva.estado === 'PENDIENTE' || reserva.estado === 'CONFIRMADA'" class="alert alert-info mb-3 py-2">
+              <i class="bi bi-info-circle me-2"></i>
+              <span *ngIf="getDiasRestantes(reserva.fecha_expiracion) > 0">
+                <strong>{{ getDiasRestantes(reserva.fecha_expiracion) }} días</strong> restantes
+              </span>
+              <span *ngIf="getDiasRestantes(reserva.fecha_expiracion) <= 0" class="text-danger">
+                <strong>Expira hoy</strong>
+              </span>
+            </div>
+  
+            <!-- Acciones -->
+            <div class="d-flex gap-2">
+              <button 
+                *ngIf="reserva.estado === 'PENDIENTE'"
+                class="btn btn-success btn-sm flex-fill"
+                (click)="confirmarReserva(reserva.id)">
+                <i class="bi bi-check-circle me-1"></i>Confirmar
+              </button>
+              <button 
+                *ngIf="reserva.estado === 'CONFIRMADA'"
+                class="btn btn-primary btn-sm flex-fill"
+                (click)="convertirAPrestamo(reserva.id)">
+                <i class="bi bi-arrow-right-circle me-1"></i>Crear Préstamo
+              </button>
+              <button 
+                class="btn btn-outline-warning btn-sm"
+                title="Editar">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button 
+                *ngIf="reserva.estado !== 'EXPIRADA'"
+                class="btn btn-outline-danger btn-sm"
+                (click)="cancelarReserva(reserva.id)"
+                title="Cancelar">
+                <i class="bi bi-x-circle"></i>
+              </button>
+              <button 
+                class="btn btn-outline-secondary btn-sm"
+                (click)="eliminarReserva(reserva.id)"
+                title="Eliminar">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Empty state -->
+      <div *ngIf="reservasFiltradas.length === 0" class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body text-center py-5">
+            <i class="bi bi-calendar-x display-1 text-muted mb-3"></i>
+            <h5 class="text-muted">No hay reservas registradas</h5>
+            <p class="text-muted mb-4">Comienza registrando tu primera reserva</p>
+            <button class="btn btn-warning">
+              <i class="bi bi-plus-circle me-2"></i>Nueva Reserva
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Pagination -->
+    <div *ngIf="reservasFiltradas.length > 0" class="row mt-4">
+      <div class="col-12">
+        <nav aria-label="Paginación">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item disabled">
+              <a class="page-link">Anterior</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Siguiente</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+  .hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+  }
+  </style>

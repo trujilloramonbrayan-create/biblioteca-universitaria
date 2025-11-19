@@ -1,0 +1,63 @@
+/* prestamos.component.css y reservas.component.css */
+
+.avatar {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .table-hover tbody tr {
+    transition: all 0.2s ease;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-group-sm .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .card {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+  }
+  
+  /* Animations for stats cards */
+  .card-body h3 {
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .card-body h3 {
+    transform: scale(1.1);
+  }
+  
+  /* Custom scrollbar for table */
+  .table-responsive::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

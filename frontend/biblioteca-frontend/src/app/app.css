@@ -1,0 +1,88 @@
+/* Animaciones suaves */
+* {
+    transition: all 0.3s ease;
+  }
+  
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-brand:hover {
+    transform: scale(1.05);
+  }
+  
+  .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 80%;
+    left: 10%;
+  }
+  
+  /* Cards hover effect */
+  .hover-shadow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  /* Buttons */
+  .btn {
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer links */
+  footer a {
+    transition: color 0.3s ease;
+  }
+  
+  footer a:hover {
+    color: white !important;
+  }
+  
+  /* Table rows */
+  .table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

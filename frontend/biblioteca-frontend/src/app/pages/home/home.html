@@ -1,0 +1,194 @@
+<!-- Hero Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h1 class="display-4 fw-bold mb-3">Bienvenido a tu Biblioteca Digital</h1>
+          <p class="lead mb-4">Gestiona recursos, préstamos y reservas de manera eficiente</p>
+          <div class="d-flex gap-3">
+            <button class="btn btn-light btn-lg" routerLink="/recursos">
+              <i class="bi bi-search me-2"></i>Explorar Recursos
+            </button>
+            <button class="btn btn-outline-light btn-lg">
+              <i class="bi bi-plus-circle me-2"></i>Nuevo Préstamo
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&h=400&fit=crop" 
+               alt="Biblioteca" 
+               class="img-fluid rounded shadow-lg">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Cards -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex p-3 mb-3">
+                <i class="bi bi-book fs-1 text-primary"></i>
+              </div>
+              <h3 class="fw-bold mb-1">1,234</h3>
+              <p class="text-muted mb-0">Recursos Totales</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center">
+              <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex p-3 mb-3">
+                <i class="bi bi-arrow-left-right fs-1 text-success"></i>
+              </div>
+              <h3 class="fw-bold mb-1">89</h3>
+              <p class="text-muted mb-0">Préstamos Activos</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center">
+              <div class="rounded-circle bg-warning bg-opacity-10 d-inline-flex p-3 mb-3">
+                <i class="bi bi-calendar-check fs-1 text-warning"></i>
+              </div>
+              <h3 class="fw-bold mb-1">45</h3>
+              <p class="text-muted mb-0">Reservas Pendientes</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body text-center">
+              <div class="rounded-circle bg-info bg-opacity-10 d-inline-flex p-3 mb-3">
+                <i class="bi bi-people fs-1 text-info"></i>
+              </div>
+              <h3 class="fw-bold mb-1">567</h3>
+              <p class="text-muted mb-0">Usuarios Activos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Quick Actions -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">Acciones Rápidas</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body text-center p-4">
+              <i class="bi bi-search fs-1 text-primary mb-3"></i>
+              <h5 class="fw-bold mb-3">Buscar Recursos</h5>
+              <p class="text-muted mb-4">Encuentra libros, revistas y más en nuestro catálogo</p>
+              <button class="btn btn-outline-primary" routerLink="/recursos">
+                Ir a Recursos <i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body text-center p-4">
+              <i class="bi bi-plus-circle fs-1 text-success mb-3"></i>
+              <h5 class="fw-bold mb-3">Nuevo Préstamo</h5>
+              <p class="text-muted mb-4">Registra un nuevo préstamo de manera rápida</p>
+              <button class="btn btn-outline-success" routerLink="/prestamos">
+                Crear Préstamo <i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body text-center p-4">
+              <i class="bi bi-calendar-plus fs-1 text-warning mb-3"></i>
+              <h5 class="fw-bold mb-3">Gestionar Reservas</h5>
+              <p class="text-muted mb-4">Administra las reservas de tus usuarios</p>
+              <button class="btn btn-outline-warning" routerLink="/reservas">
+                Ver Reservas <i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Recent Activity -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="mb-4 fw-bold">Actividad Reciente</h2>
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Usuario</th>
+                  <th>Acción</th>
+                  <th>Recurso</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                        JD
+                      </div>
+                      Juan Pérez
+                    </div>
+                  </td>
+                  <td><span class="badge bg-success">Préstamo</span></td>
+                  <td>Cien años de soledad</td>
+                  <td>Hoy, 10:30 AM</td>
+                  <td><i class="bi bi-check-circle-fill text-success"></i></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="avatar bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                        MG
+                      </div>
+                      María García
+                    </div>
+                  </td>
+                  <td><span class="badge bg-warning">Reserva</span></td>
+                  <td>El principito</td>
+                  <td>Hoy, 09:15 AM</td>
+                  <td><i class="bi bi-clock-fill text-warning"></i></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="avatar bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                        CR
+                      </div>
+                      Carlos Rodríguez
+                    </div>
+                  </td>
+                  <td><span class="badge bg-danger">Devolución</span></td>
+                  <td>1984</td>
+                  <td>Ayer, 04:45 PM</td>
+                  <td><i class="bi bi-check-circle-fill text-success"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
